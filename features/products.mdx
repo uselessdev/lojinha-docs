@@ -1,5 +1,45 @@
 ---
 title: "Produtos"
-description: "Os produtos que você vai vender"
 icon: "tag"
 ---
+
+Antes de começar a cadastrar seus produtos, entendendo que os produtos serão
+os que você vai vender na sua loja, tem algumas regras para que eles fiquem
+disponíveis para você consumir os dados via API, os produtos só estarão dísponíveis
+via API se duas situações forem atendidas:
+
+1. O status do produto é **ativo**
+2. A coleção em que o produto pertence não está **arquivda**
+
+### Criando produtos
+
+<video
+  controls
+  className="w-full object-cover object-center"
+  src="https://github.com/uselessdev/lojinha-docs/raw/main/videos/products/criando-produtos.mov"
+></video>
+
+<Warning>
+  Um produto só fica disponível na API se o status for **Ativo** e a coleção não
+  estiver **Arquivada**.
+</Warning>
+
+### Editando um produto
+
+<video
+  controls
+  className="w-full object-cover object-center"
+  src="https://github.com/uselessdev/lojinha-docs/raw/main/videos/products/editando-produto.mov"
+></video>
+
+### Arquivando e excluindo um produto
+
+<video
+  controls
+  className="w-full object-cover object-center"
+  src="https://github.com/uselessdev/lojinha-docs/raw/main/videos/products/arquivando-produtos.mov"
+></video>
+
+<Warning>
+  Um produto excluído de forma permanente não pode ser recuperado.
+</Warning>
