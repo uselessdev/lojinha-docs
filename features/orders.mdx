@@ -2,3 +2,18 @@
 title: "Pedidos"
 icon: "box"
 ---
+
+Um **Pedido** é uma compra feita pelo seu cliente, ela também deve ser criada pela
+sua aplicação via API quando um cliente finaliza um **carrinho**.
+
+Um pedido pode ter vários `status`:
+
+1. `aguardando pagamento` quando um carrinho é finalizado e se torna um pedido.
+2. `pago` o seu provedor de pagamento nos informou que o pedido foi pago com sucesso.
+3. `entrega` o pedido está em processo de entrega da sua loja para o cliente.
+4. `finalizado` o pedido foi finalizado _(pago e entrege)_.
+5. `cancelado` o pedido foi cancelado pelo seu cliente ou pela sua loja.
+6. `estorno` o seu provedor de pagamento informou que seu cliente pediu estorno do pagamento.
+7. `extornado` o estorno do pagamento foi feito com sucesso para seu client.
+
+Você pode acompanhar os pedidos da sua loja em https://lojinha.dev/orders
