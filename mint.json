@@ -28,6 +28,9 @@
     "name": "Dashboard",
     "url": "https://lojinha.dev/dashboard"
   },
+  "primaryTab": {
+    "name": "Documentação"
+  },
   "tabs": [
     {
       "name": "API",
@@ -62,12 +65,9 @@
       "pages": ["api-reference/authentication"]
     },
     {
-      "group": "Endpoints",
+      "group": "Produtos",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/update",
-        "api-reference/endpoint/delete"
+        "api-reference/endpoint/products/get"
       ]
     }
   ],
