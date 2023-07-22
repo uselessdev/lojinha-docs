@@ -2,3 +2,19 @@
 title: "Carrinhos"
 icon: "cart-shopping"
 ---
+
+Um carrinho é um **pedido** com status `PENDING`, ele pode ou não ter um cliente relacionado,
+e são criados pela sua aplicação via API, idealmente quando um cliente ou visitante da sua
+loja adiciona o primeiro produto no carrinho
+
+Carrinhos servem como um indicador de vendas carrinhos abertos e abandonados, ee você não precisa
+desses dados, você não precisa criar um carrinho, você pode mantê-los no front-end e criar
+um **pedido**.
+
+Quando um carrinho é criado a quantidade de produto é modificada para atender a quantidade solicitada,
+se um produto é removido ou alterado a quantidade, isso também modifica a quantidade disponível do produto.
+
+Atualmente um produto só pode ser adicionado no carrinho ou aumentar a quantidade se o produto
+estiver com a quantidade disponível.
+
+Você pode ver os carrinhos que existem na sua loja em https://lojinha.dev/carts.
