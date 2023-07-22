@@ -44,7 +44,7 @@
   "navigation": [
     {
       "group": "Começando",
-      "pages": ["introduction", "comecando"]
+      "pages": ["introduction", "account", "store"]
     },
     {
       "group": "Funcionalidades",
