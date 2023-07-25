@@ -70,6 +70,14 @@
             "api-reference/endpoint/collections/get",
             "api-reference/endpoint/collections/slug"
           ]
+        },
+        {
+          "group": "Produtos",
+          "pages": [
+            "api-reference/endpoint/products/get",
+            "api-reference/endpoint/products/slug",
+            "api-reference/endpoint/products/collection"
+          ]
         }
       ]
     }

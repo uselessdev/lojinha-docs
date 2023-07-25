@@ -1,9 +1,13 @@
 ---
-title: "Produtos"
-api: "GET https://lojinha.dev/api/products"
-description: "Retorna todos os produtos da loja."
+title: "Produto por slug"
+api: "GET https://lojinha.dev/api/products/:slug"
+description: "Retorna o primeiro produto pela slug"
 authMethod: "bearer"
 ---
+
+<ParamField path="slug" type="string">
+  slug do produto, retorna o primeiro produto encontrado.
+</ParamField>
 
 ### Resposta
 
@@ -13,7 +17,7 @@ authMethod: "bearer"
   estiver em uma coleção, esta coleção não pode estar **arquivada**.
 </Warning>
 
-<ResponseField name="products" type="array">
+<ResponseField name="product" type="objeto">
   <Expandable name="product">
     <ResponseField name="id" type="uuid">
       Id do produto
@@ -87,35 +91,28 @@ authMethod: "bearer"
   </Expandable>
 </ResponseField>
 
-<ResponseField name="total" type="number">
-  O número total de produtos encontrados
-</ResponseField>
-
 <ResponseExample>
 ```json 200
 {
-  "products": [
-    {
-      "id": "4cf35a0f-7f25-43ef-8e5e-208fbfeb1bd0",
-      "store": "org_2StqHEqEqKtCH66IJjLb73J2ww6",
-      "status": "ACTIVE",
-      "name": "A Tormenta de Espadas",
-      "slug": "a-tormenta-de-espadas",
-      "description": "<p>Terceiro livro da série</p>",
-      "price": 8000,
-      "originalPrice": 12000,
-      "quantity": 9,
-      "sku": "LI-004",
-      "createdAt": "2023-07-22T00:51:44.685Z",
-      "updatedAt": "2023-07-24T02:09:03.948Z",
-      "deletedAt": null,
-      "_count": {
-        "collections": 2,
-        "orders": 2
-      }
+  "product": {
+    "id": "4cf35a0f-7f25-43ef-8e5e-208fbfeb1bd0",
+    "store": "org_2StqHEqEqKtCH66IJjLb73J2ww6",
+    "status": "ACTIVE",
+    "name": "A Tormenta de Espadas",
+    "slug": "a-tormenta-de-espadas",
+    "description": "<p>Terceiro livro da série</p>",
+    "price": 8000,
+    "originalPrice": 12000,
+    "quantity": 9,
+    "sku": "LI-004",
+    "createdAt": "2023-07-22T00:51:44.685Z",
+    "updatedAt": "2023-07-24T02:09:03.948Z",
+    "deletedAt": null,
+    "_count": {
+      "collections": 2,
+      "orders": 2
     }
-  ],
-  "total": 1
+  }
 }
 ```
 </ResponseExample>
