@@ -1,0 +1,75 @@
+---
+title: "Clientes"
+api: "POST https://lojinha.dev/api/v1/customers"
+description: "Cria um cliente"
+authMethod: "bearer"
+---
+
+https://lojinha.dev não oferece autenticação de cliente, o cliente criado é útil para
+relacionar pedidos e endereço apenas.
+
+Para autenticar um cliente na sua loja você precisa usar uma ferramenta de terceiro, ou
+implementar isso por sua conta, nós recomendamos utilizar o https://clerk.dev, você pode
+ver nosso guia de [integração para mais detalhes](/guias/customers-with-clerk).
+
+## Criando cliente via webhook
+
+Configure sua ferramenta para fazer uma chamada via webhook pro seguinte endpoint
+https://lojinha.dev/api/on-create-customer este endpoint aceita uma requisição `POST`
+com o seguinte body e header:
+
+<Tip>
+  Se você estiver utilizando **Clerk** você pode ver mais detalhes aqui:
+  https://clerk.com/docs/integration/webhooks
+</Tip>
+
+<CodeGroup>
+  ```json Body
+  {
+    "email": "<email.cliente@email.com>",
+    "id": "<id do cliente criado na sua ferramenta>"
+  }
+  ```
+
+  ```json Header
+  Authorization: "Bearer <sua chave de api>"
+  ```
+</CodeGroup>
+
+## API
+
+Se você está implementando você mesmo a autenticação de seus clientes, você pode utilizar
+a API para sincronizar seus clientes com a **lojinha**.
+
+### Body
+<ParamField body="email" type="string" required>
+  E-mail do cliente
+</ParamField>
+
+### Resposta
+<ResponseField name="customer" type="string">
+  ID do cliente
+</ResponseField>
+
+<ResponseExample>
+```json 201
+{
+	"customer": "7b16fb4f-6c54-4f7c-a751-3027b451b4ed"
+}
+```
+
+```json 400
+{
+  "code": "BAD_REQUEST",
+  "error": "Invalid request payload, make sure you have been sent the correct data.",
+  "fields": [
+    {
+      "validation": "email",
+      "code": "invalid_string",
+      "message": "Invalid email",
+      "path": ["email"]
+    }
+  ]
+}
+```
+</ResponseExample>

@@ -66,6 +66,7 @@
         "api-reference/authentication",
         {
           "group": "Coleções",
+          "icon": "layer-group",
           "pages": [
             "api-reference/endpoint/collections/get",
             "api-reference/endpoint/collections/slug"
@@ -73,6 +74,7 @@
         },
         {
           "group": "Produtos",
+          "icon": "tag",
           "pages": [
             "api-reference/endpoint/products/get",
             "api-reference/endpoint/products/slug",
@@ -81,12 +83,21 @@
         },
         {
           "group": "Carrinhos",
+          "icon": "cart-shopping",
           "pages": [
             "api-reference/endpoint/carts/create",
             "api-reference/endpoint/carts/get",
             "api-reference/endpoint/carts/add-products",
             "api-reference/endpoint/carts/remove-products",
             "api-reference/endpoint/carts/change-quantity"
+          ]
+        },
+        {
+          "group": "Clientes",
+          "icon": "users",
+          "pages": [
+            "api-reference/endpoint/customers/create",
+            "api-reference/endpoint/customers/get"
           ]
         }
       ]

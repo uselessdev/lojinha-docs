@@ -1,0 +1,59 @@
+---
+title: "Recuperar clientes"
+api: "GET https://lojinha.dev/api/v1/customers/:id"
+description: "Retorna o cliente"
+authMethod: "bearer"
+---
+
+Retorna os dados do cliente pelo `id` ou `externalId`
+
+<ResponseField name="customer" type="object">
+  <Expandable name="customer">
+    <ResponseField name="id" type="uuid">
+      Id do cliente
+    </ResponseField>
+
+    <ResponseField name="externalId" type="string">
+      ID do cliente na sua aplicação.
+    </ResponseField>
+
+    <ResponseField name="email" type="string">
+      E-mail do cliente
+    </ResponseField>
+
+    <ResponseField name="createdAt" type="string">
+      Data de criação
+    </ResponseField>
+
+    <ResponseField name="updatedAt" type="string | null">
+      Data da última modifição
+    </ResponseField>
+
+    <ResponseField name="deletedAt" type="string | null">
+      Data em que foi arquivado.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+
+<ResponseExample>
+```json 200
+{
+  "customer": {
+    "id": "7b16fb4f-6c54-4f7c-a751-3027b451b4ed",
+    "externalId": null,
+    "email": "wallacebatistaoliveira+customer@gmail.com",
+    "createdAt": "2023-07-24T13:57:53.652Z",
+    "updatedAt": null,
+    "deletedAt": null
+  }
+}
+```
+
+```json 404
+{
+  "code": "NOT_FOUND",
+  "error": "Can't find the customer"
+}
+```
+</ResponseExample>
