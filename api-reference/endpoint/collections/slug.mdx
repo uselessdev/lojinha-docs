@@ -1,0 +1,96 @@
+---
+title: "Coleção por slug"
+api: "GET https://lojinha.dev/api/collections/:slug"
+description: "Retorna uma coleção pela slug"
+authMethod: "bearer"
+---
+
+Retorna a primeira coleção encontrada que corresponde com a **slug** e não está arquivada.
+
+<ParamField path="slug" type="string">
+  slug da coleção, retorna a primeira coleção encontrada.
+</ParamField>
+
+### Resposta
+
+Retorna todas as coleções da loja.
+
+<ResponseField name="collection" type="object">
+  <Expandable name="collection">
+    <ResponseField name="id" type="uuid">
+      Id da coleção
+    </ResponseField>
+
+    <ResponseField name="store" type="string">
+      ID da loja
+    </ResponseField>
+
+    <ResponseField name="name" type="string">
+      Nome da coleção
+    </ResponseField>
+
+    <ResponseField name="slug" type="string">
+      Slug da coleção
+    </ResponseField>
+
+    <ResponseField name="description" type="string | null">
+      Descrição da coleção em uma `string` com `HTML`
+    </ResponseField>
+
+    <ResponseField name="createdAt" type="string">
+      Data em que a coleção foi criada
+    </ResponseField>
+
+    <ResponseField name="updatedAt" type="string | null">
+      Data da última modifição da coleção
+    </ResponseField>
+
+    <ResponseField name="deletedAt" type="string | null">
+      Data em que a coleção foi arquivada
+
+      <Note>
+        Pela API este dado sempre deve retornar `null`
+      </Note>
+    </ResponseField>
+
+    <ResponseField name="_count" type="object">
+      <Expandable>
+        <ResponseField name="parents" type="number">
+          Número de coleções que esta coleção pertence.
+        </ResponseField>
+
+        <ResponseField name="children" type="number">
+          Número de coleções que pertencem a esta coleção
+        </ResponseField>
+
+        <ResponseField name="products" type="number">
+          Número de produtos que pertencem  a esta coleção
+        </ResponseField>
+      </Expandable>
+
+    </ResponseField>
+
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+```json 200
+{
+	"collection": {
+		"id": "25de97bf-6564-4c93-b860-8898a4d52bf7",
+		"store": "org_2StqHEqEqKtCH66IJjLb73J2ww6",
+		"name": "Livros",
+		"slug": "livros",
+		"description": "<p><em>Todos os livros da nossa loja.</em></p>",
+		"createdAt": "2023-07-21T21:49:58.961Z",
+		"updatedAt": null,
+		"deletedAt": null,
+		"_count": {
+			"parents": 0,
+			"children": 1,
+			"products": 2
+		}
+	}
+}
+```
+</ResponseExample>

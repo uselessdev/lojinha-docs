@@ -62,12 +62,15 @@
     },
     {
       "group": "API",
-      "pages": ["api-reference/authentication"]
-    },
-    {
-      "group": "Produtos",
       "pages": [
-        "api-reference/endpoint/products/get"
+        "api-reference/authentication",
+        {
+          "group": "Coleções",
+          "pages": [
+            "api-reference/endpoint/collections/get",
+            "api-reference/endpoint/collections/slug"
+          ]
+        }
       ]
     }
   ],
