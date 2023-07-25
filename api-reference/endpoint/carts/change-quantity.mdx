@@ -1,0 +1,234 @@
+---
+title: "Alterando quantidade de produto"
+api: "PATCH https://lojinha.dev/api/v1/carts/:id/products/:pid"
+description: "Adiciona uma lista de produtos em um carrinho existente."
+authMethod: "bearer"
+---
+
+Ao alterar a quantidade de produtos no carrinho pode acontecer as seguintes situações:
+
+1. Se quantidade requisitada for a mesma que a quantidade do produto no carrinho nenhuma alteração é feita.
+2. Se a nova quantidade for igual a zero o produto é removido do carrinho.
+3. Se quantidade requisitada for maior que a quantidade disponível de produtos,
+o endpoint retorna um erro com status 422.
+4. Se a remoção de produtos resultar em um carrinho vazio, o carrinho é automáticamente
+excluído.
+
+### URL
+<ParamField path="id" type="uuid" required>
+  Id do carrinho
+</ParamField>
+
+<ParamField path="pid" type="uuid" required>
+  Id do produto
+</ParamField>
+
+### Body
+
+<ParamField body="quantity" type="number">
+  A nova quantidade do produto.
+</ParamField>
+
+### Resposta
+
+<ResponseField name="cart" type="object">
+  <Expandable name="cart">
+    <ResponseField name="id" type="uuid">
+      ID do carrinho
+    </ResponseField>
+
+    <ResponseField name="store" type="string">
+      ID da loja
+    </ResponseField>
+
+    <ResponseField name="customerId" type="string | null">
+      ID do cliente
+    </ResponseField>
+
+    <ResponseField name="addressId" type="string | null">
+      ID do endereço do cliente
+    </ResponseField>
+
+    <ResponseField name="price" type="number">
+      Valor do carrinho
+    </ResponseField>
+
+    <ResponseField name="originalPrice" type="number">
+      Valor original do carrinho
+    </ResponseField>
+
+    <ResponseField name="status" type="enum" default="PENDING">
+      Status do carrinho. Neste endpoint o valor sempre será `PENDING`.
+    </ResponseField>
+
+    <ResponseField name="createdAt" type="string | null">
+      Data de criação.
+    </ResponseField>
+
+    <ResponseField name="updatedAt" type="string | null">
+      Data da última modificação
+    </ResponseField>
+
+    <ResponseField name="deletedAt" type="string | null">
+      Data em que foi arquivado.
+    </ResponseField>
+
+    <ResponseField name="products" type="array">
+      <Expandable>
+        <ResponseField name="id" type="uuid">
+          Id do produto
+        </ResponseField>
+
+        <ResponseField name="store" type="string">
+          ID da loja
+        </ResponseField>
+
+        <ResponseField name="status" type="enum" default="DRAFT">
+          Status do produto, pode ser: `DRAFT | ACTIVE`
+        </ResponseField>
+
+        <ResponseField name="name" type="string">
+          Nome do produto
+        </ResponseField>
+
+        <ResponseField name="slug" type="string">
+          Slug do produto
+        </ResponseField>
+
+        <ResponseField name="description" type="string | null">
+          Descrição do produto em uma `string` com `HTML`
+        </ResponseField>
+
+        <ResponseField name="price" type="number | null">
+          Preço atual do produto
+        </ResponseField>
+
+        <ResponseField name="originalPrice" type="number | null">
+          Preço original do produto
+        </ResponseField>
+
+        <ResponseField name="quantity" type="number | null">
+          Quantidade do produto em estoque
+        </ResponseField>
+
+        <ResponseField name="sku" type="string | null">
+          Código do produto pra controle de estoque `Stock Keeping Unit`, pode
+          ser o código de barras de um produto único
+        </ResponseField>
+
+        <ResponseField name="createdAt" type="string">
+          Data de criação
+        </ResponseField>
+
+        <ResponseField name="updatedAt" type="string | null">
+          Data da última modifição
+        </ResponseField>
+
+        <ResponseField name="deletedAt" type="string | null">
+          Data em que que foi arquivado
+
+          <Note>
+            Pela API este dado sempre deve retornar `null`
+          </Note>
+        </ResponseField>
+
+        <ResponseField name="order" type="object">
+          Informações deste produto no carrinho.
+
+          <Expandable>
+            <ResponseField name="quantity" type="number">
+              Quantidade deste produto neste carrinho.
+            </ResponseField>
+
+            <ResponseField name="price" type="number">
+              Preço do produto no carrinho.
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+
+    </ResponseField>
+
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+```json 200
+{
+  "cart": {
+    "id": "4f24a75c-792a-4aff-9265-19deb198be07",
+    "store": "org_2StqHEqEqKtCH66IJjLb73J2ww6",
+    "customerId": null,
+    "addressId": null,
+    "price": 16000,
+    "originalPrice": null,
+    "status": "PENDING",
+    "createdAt": "2023-07-23T22:04:52.234Z",
+    "updatedAt": null,
+    "deletedAt": null,
+    "products": [
+      {
+        "id": "4cf35a0f-7f25-43ef-8e5e-208fbfeb1bd0",
+        "store": "org_2StqHEqEqKtCH66IJjLb73J2ww6",
+        "status": "ACTIVE",
+        "name": "A Tormenta de Espadas",
+        "slug": "a-tormenta-de-espadas",
+        "description": "<p>Terceiro livro da série</p>",
+        "price": 8000,
+        "originalPrice": 12000,
+        "quantity": 10,
+        "sku": "LI-004",
+        "createdAt": "2023-07-22T00:51:44.685Z",
+        "updatedAt": "2023-07-23T22:04:32.178Z",
+        "deletedAt": null,
+        "order": {
+          "quantity": 2,
+          "price": 16000
+        }
+      }
+    ]
+  }
+}
+```
+
+```json 204
+No Content
+```
+
+```json 304
+{
+  "code": "PRODUCT_UNCHANGED_QUANTITY",
+  "message": "The quantity request for product is the same as before."
+}
+```
+
+```json 404
+{
+  "code": "NOT_FOUND",
+  "error": "Cart or product not found"
+}
+```
+
+```json 400
+{
+  "code": "BAD_REQUEST",
+  "error": "Invalid request payload, make sure you have been sent the correct data.",
+  "fields": [
+    {
+      "validation": "uuid",
+      "code": "invalid_string",
+      "message": "Invalid uuid",
+      "path": ["products", 0, "id"]
+    }
+  ]
+}
+```
+
+```json 422
+{
+  "code": "INSUFFICIENT_PRODUCTS",
+  "error": "The requested quantity is not available"
+}
+```
+
+</ResponseExample>

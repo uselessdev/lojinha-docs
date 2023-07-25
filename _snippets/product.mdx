@@ -1,0 +1,84 @@
+<Expandable name="product">
+  <ResponseField name="id" type="uuid">
+    Id do produto
+  </ResponseField>
+
+{" "}
+<ResponseField name="store" type="string">
+  ID da loja
+</ResponseField>
+
+{" "}
+<ResponseField name="status" type="enum" default="DRAFT">
+  Status do produto, pode ser: `DRAFT | ACTIVE`
+</ResponseField>
+
+{" "}
+<ResponseField name="name" type="string">
+  Nome do produto
+</ResponseField>
+
+{" "}
+<ResponseField name="slug" type="string">
+  Slug do produto
+</ResponseField>
+
+{" "}
+<ResponseField name="description" type="string | null">
+  Descrição do produto em uma `string` com `HTML`
+</ResponseField>
+
+{" "}
+<ResponseField name="price" type="number | null">
+  Preço atual do produto
+</ResponseField>
+
+{" "}
+<ResponseField name="originalPrice" type="number | null">
+  Preço original do produto
+</ResponseField>
+
+{" "}
+<ResponseField name="quantity" type="number | null">
+  Quantidade do produto em estoque
+</ResponseField>
+
+{" "}
+<ResponseField name="sku" type="string | null">
+  Código do produto pra controle de estoque `Stock Keeping Unit`, pode ser o
+  código de barras de um produto único
+</ResponseField>
+
+{" "}
+<ResponseField name="createdAt" type="string">
+  Data de criação
+</ResponseField>
+
+{" "}
+<ResponseField name="updatedAt" type="string | null">
+  Data da última modifição
+</ResponseField>
+
+  <ResponseField name="deletedAt" type="string | null">
+    Data em que que foi arquivado
+
+    <Note>
+      Pela API este dado sempre deve retornar `null`
+    </Note>
+
+  </ResponseField>
+
+  <ResponseField name="_count" type="object">
+    <Expandable>
+      <ResponseField name="collections" type="number">
+        Número de coleções que este produto pertence
+      </ResponseField>
+
+      <ResponseField name="orders" type="number">
+        Número de pedidos que contém este produto
+      </ResponseField>
+    </Expandable>
+
+  </ResponseField>
+
+</Expandable>

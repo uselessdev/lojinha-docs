@@ -78,6 +78,16 @@
             "api-reference/endpoint/products/slug",
             "api-reference/endpoint/products/collection"
           ]
+        },
+        {
+          "group": "Carrinhos",
+          "pages": [
+            "api-reference/endpoint/carts/create",
+            "api-reference/endpoint/carts/get",
+            "api-reference/endpoint/carts/add-products",
+            "api-reference/endpoint/carts/remove-products",
+            "api-reference/endpoint/carts/change-quantity"
+          ]
         }
       ]
     }
