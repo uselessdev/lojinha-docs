@@ -1,0 +1,97 @@
+---
+title: "Recuperando Endereços"
+api: "GET https://lojinha.dev/api/v1/:customer/addresses"
+description: "Recupera todos os endereços de um cliente"
+authMethod: "bearer"
+---
+
+<ParamField path="customer" type="string" required>
+  `ID` ou `externalId` do cliente
+</ParamField>
+
+### Resposta
+
+<ResponseField name="address" type="object">
+  Endereço do cliente.
+
+  <Expandable>
+    <ResponseField name="alias" type="string">
+      Nome para o endereço
+    </ResponseField>
+
+    <ResponseField name="zipcode" type="string">
+      CEP do endereço
+    </ResponseField>
+
+    <ResponseField name="street" type="string">
+      Nome da rua ou avenida
+    </ResponseField>
+
+    <ResponseField name="state" type="string">
+      Estado
+    </ResponseField>
+
+    <ResponseField name="city" type="string">
+      Cidade
+    </ResponseField>
+
+    <ResponseField name="country" type="string">
+      País
+    </ResponseField>
+
+    <ResponseField name="neightborhood" type="string">
+      Bairro
+    </ResponseField>
+
+    <ResponseField name="number" type="string">
+      Número
+    </ResponseField>
+
+    <ResponseField name="complement" type="string">
+      Complemento
+    </ResponseField>
+
+    <ResponseField name="createdAt" type="string">
+      Data de criação
+    </ResponseField>
+
+    <ResponseField name="updatedAt" type="string">
+      Data da última utilização
+    </ResponseField>
+
+    <ResponseField name="deletedAt" type="string">
+      Data em que foi arquivado
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="total" type="number">
+  Total de endereços que o cliente possui
+</ResponseField>
+
+<ResponseExample>
+```json 200
+{
+  "addresses": [
+    {
+      "id": "96c0e914-0094-4694-b735-a54633f8dfbc",
+      "alias": "Casa",
+      "zipcode": "87045-700",
+      "street": "Praça Pioneiro Antônio Laurentino Tavares",
+      "state": "PR",
+      "city": "Maringá",
+      "country": "Brasil",
+      "neightborhood": "Jd. América",
+      "number": "200",
+      "complement": "Casa Azul",
+      "customerId": "7b16fb4f-6c54-4f7c-a751-3027b451b4ed",
+      "createdAt": "2023-07-24T14:46:19.941Z",
+      "updatedAt": null,
+      "deletedAt": null
+    }
+  ],
+  "total": 1
+}
+```
+</ResponseExample>
+

@@ -99,6 +99,14 @@
             "api-reference/endpoint/customers/create",
             "api-reference/endpoint/customers/get"
           ]
+        },
+        {
+          "group": "Endereços",
+          "icon": "home",
+          "pages": [
+            "api-reference/endpoint/addresses/create",
+            "api-reference/endpoint/addresses/get"
+          ]
         }
       ]
     }
