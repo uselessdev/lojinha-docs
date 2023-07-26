@@ -1,0 +1,31 @@
+---
+title: "Status"
+description: "Status de pedidos"
+---
+
+Status de pedido indicam que estágio um pedido se encontra.
+
+### PENDING
+Um pedido com status `PENDING` deve ser considerado um [carrinho](/api-reference/endpoint/carts/create).
+
+### CREATED
+Um pedido criado, que ainda está aguardando pagamento, um pedido nesse status pode alterar para os seguintes
+status: `PAID` ou `CANCELED`.
+
+### PAID
+Pedido pago.
+
+### SHIPPING
+Pedido pronto para entrega.
+
+### CANCELED
+Pedido cancelado pelo cliente ou pela loja, se o pedido já havia sido pago, o próximo status deve ser `REFUND`.
+
+### DONE
+Pedido finalizado _(pago e entregue)_.
+
+### REFUND
+Estorno solicitado, por requisição do cliente ou porque o pedido foi cancelado.
+
+### REFUNDED
+Estorno concluído.

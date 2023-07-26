@@ -112,6 +112,7 @@
           "group": "Pedidos",
           "icon": "box",
           "pages": [
+            "api-reference/endpoint/orders/status",
             "api-reference/endpoint/orders/create",
             "api-reference/endpoint/orders/get",
             "api-reference/endpoint/orders/get-by-id"
