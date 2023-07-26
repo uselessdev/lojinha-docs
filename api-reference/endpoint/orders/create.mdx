@@ -12,12 +12,32 @@ description: "Cria um pedido"
 
 ## Body
 
+<Note>
+  O ID do carrinho só é necessário se você estiver criando um pedido de um carrinho já exitente,
+  caso você não informe um id de carrinho é obrigatório passar uma lista de produtos no campo `products`,
+  você não pode passar os dois parametros ao mesmo tempo.
+</Note>
+
 <ParamField body="id" type="uuid">
   ID do carrinho se existir
 </ParamField>
 
 <ParamField body="address" type="uuid">
   ID do endereço do cliente.
+</ParamField>
+
+<ParamField body="products" type="array">
+  Lista de produtos a serem adicionados
+
+  <Expandable>
+    <ParamField body="id" type="uuid" required>
+      ID do produto a ser adicionado no carrinho
+    </ParamField>
+
+    <ParamField body="quantity" type="number" required>
+      Quandidade de produtos a serem adicionados
+    </ParamField>
+  </Expandable>
 </ParamField>
 
 ## Resposta
