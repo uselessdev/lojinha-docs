@@ -1,67 +1,68 @@
 ---
-title: "Removendo produto"
-api: "DELETE https://lojinha.dev/api/v1/carts/:id/products/:pid"
-description: "Remove um produto do carrinho."
+title: "Criando Pedidos"
+api: "POST https://lojinha.dev/api/v1/:customer/orders"
+description: "Cria um pedido"
 authMethod: "bearer"
 ---
 
-<Warning>
-  Ao remover um produto, se o carrinho ficar vazio ele é automáticamente
-  arquivado e o endpoint retorna um status 204.
-</Warning>
+## URL
 
-### URL
-<ParamField path="id" type="uuid" required>
-  Id do carrinho
+<ParamField path="customer" type="uuid" required>
+  ID do cliente.
 </ParamField>
 
-<ParamField path="pid" type="uuid" required>
-  Id do produto
+## Body
+
+<ParamField body="id" type="uuid">
+  ID do carrinho se existir
 </ParamField>
 
+<ParamField body="address" type="uuid">
+  ID do endereço do cliente.
+</ParamField>
 
-### Resposta
+## Resposta
 
-<ResponseField name="cart" type="object">
-  <Expandable name="cart">
+<ResponseField name="order" type="object">
+  <Expandable>
     <ResponseField name="id" type="uuid">
-      ID do carrinho
+      ID do pedido
     </ResponseField>
 
-    <ResponseField name="store" type="string">
+    <ResponseField name="store" type="uuid">
       ID da loja
     </ResponseField>
 
-    <ResponseField name="customerId" type="string | null">
+    <ResponseField name="customerId" type="uuid">
       ID do cliente
     </ResponseField>
 
-    <ResponseField name="addressId" type="string | null">
-      ID do endereço do cliente
+    <ResponseField name="addressId" type="uuid">
+      ID do endereço
     </ResponseField>
 
     <ResponseField name="price" type="number">
-      Valor do carrinho
+      Valor do pedido
     </ResponseField>
 
-    <ResponseField name="originalPrice" type="number">
-      Valor original do carrinho
+    <ResponseField name="originalPrice" type="number | null">
+      Valor original do pedido
     </ResponseField>
 
-    <ResponseField name="status" type="enum" default="PENDING">
-      Status do carrinho. Neste endpoint o valor sempre será `PENDING`.
+    <ResponseField name="status" type="enum" default="CREATED">
+      Status do pedido, veja [mais detalhes aqui](/api-reference/endpoints/orders/create#status).
     </ResponseField>
 
-    <ResponseField name="createdAt" type="string | null">
+    <ResponseField name="createdAt" type="string">
       Data de criação.
     </ResponseField>
 
     <ResponseField name="updatedAt" type="string | null">
-      Data da última modificação
+      Data da última modificação.
     </ResponseField>
 
     <ResponseField name="deletedAt" type="string | null">
-      Data em que foi arquivado.
+      Data em que o pedido foi cancelado.
     </ResponseField>
 
     <ResponseField name="products" type="array">
@@ -140,22 +141,83 @@ authMethod: "bearer"
 
     </ResponseField>
 
+    <ResponseField name="address" type="object">
+      Endereço do cliente.
+
+      <Expandable>
+        <ResponseField name="id" type="uuid">
+          ID do endereço
+        </ResponseField>
+
+        <ResponseField name="customerId" type="uuid">
+          ID do cliente
+        </ResponseField>
+
+        <ResponseField name="alias" type="string">
+          Nome para o endereço
+        </ResponseField>
+
+        <ResponseField name="zipcode" type="string">
+          CEP do endereço
+        </ResponseField>
+
+        <ResponseField name="street" type="string">
+          Nome da rua ou avenida
+        </ResponseField>
+
+        <ResponseField name="state" type="string">
+          Estado
+        </ResponseField>
+
+        <ResponseField name="city" type="string">
+          Cidade
+        </ResponseField>
+
+        <ResponseField name="country" type="string">
+          País
+        </ResponseField>
+
+        <ResponseField name="neightborhood" type="string">
+          Bairro
+        </ResponseField>
+
+        <ResponseField name="number" type="string">
+          Número
+        </ResponseField>
+
+        <ResponseField name="complement" type="string">
+          Complemento
+        </ResponseField>
+
+        <ResponseField name="createdAt" type="string">
+          Data de criação
+        </ResponseField>
+
+        <ResponseField name="updatedAt" type="string">
+          Data da última utilização
+        </ResponseField>
+
+        <ResponseField name="deletedAt" type="string">
+          Data em que foi arquivado
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
   </Expandable>
 </ResponseField>
 
 <ResponseExample>
 ```json 200
 {
-  "cart": {
+  "order": {
     "id": "4f24a75c-792a-4aff-9265-19deb198be07",
     "store": "org_2StqHEqEqKtCH66IJjLb73J2ww6",
-    "customerId": null,
-    "addressId": null,
-    "price": 16000,
+    "customerId": "7b16fb4f-6c54-4f7c-a751-3027b451b4ed",
+    "addressId": "96c0e914-0094-4694-b735-a54633f8dfbc",
+    "price": 8000,
     "originalPrice": null,
-    "status": "PENDING",
+    "status": "CREATED",
     "createdAt": "2023-07-23T22:04:52.234Z",
-    "updatedAt": null,
+    "updatedAt": "2023-07-24T15:00:44.852Z",
     "deletedAt": null,
     "products": [
       {
@@ -167,31 +229,41 @@ authMethod: "bearer"
         "description": "<p>Terceiro livro da série</p>",
         "price": 8000,
         "originalPrice": 12000,
-        "quantity": 10,
+        "quantity": 9,
         "sku": "LI-004",
         "createdAt": "2023-07-22T00:51:44.685Z",
-        "updatedAt": "2023-07-23T22:04:32.178Z",
+        "updatedAt": "2023-07-24T02:09:03.948Z",
         "deletedAt": null,
         "order": {
-          "quantity": 2,
-          "price": 16000
+          "quantity": 1,
+          "price": 8000
         }
       }
-    ]
+    ],
+    "address": {
+      "id": "96c0e914-0094-4694-b735-a54633f8dfbc",
+      "customerId": "7b16fb4f-6c54-4f7c-a751-3027b451b4ed",
+      "alias": "Casa",
+      "zipcode": "87045-700",
+      "street": "Praça Pioneiro Antônio Laurentino Tavares",
+      "state": "PR",
+      "city": "Maringá",
+      "country": "Brasil",
+      "neightborhood": "Jd. América",
+      "number": "200",
+      "complement": "Casa Azul",
+      "createdAt": "2023-07-24T14:46:19.941Z",
+      "updatedAt": null,
+      "deletedAt": null
+    }
   }
 }
 ```
 
-```json 204
-No Content
-```
-
-
-```json 404
+```json 400
 {
-  "code": "NOT_FOUND",
-  "error": "Cart or product not found"
+  "code": "BAD_REQUEST",
+  "error": "Invalid request payload, make sure you have been sent the correct data."
 }
 ```
-
 </ResponseExample>

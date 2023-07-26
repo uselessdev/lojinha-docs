@@ -102,10 +102,19 @@
         },
         {
           "group": "Endereços",
-          "icon": "home",
+          "icon": "house",
           "pages": [
             "api-reference/endpoint/addresses/create",
             "api-reference/endpoint/addresses/get"
+          ]
+        },
+        {
+          "group": "Pedidos",
+          "icon": "box",
+          "pages": [
+            "api-reference/endpoint/orders/create",
+            "api-reference/endpoint/orders/get",
+            "api-reference/endpoint/orders/get-by-id"
           ]
         }
       ]

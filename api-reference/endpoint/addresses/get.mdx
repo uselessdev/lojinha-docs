@@ -15,6 +15,14 @@ authMethod: "bearer"
   Endereço do cliente.
 
   <Expandable>
+    <ResponseField name="id" type="uuid">
+      ID do endereço
+    </ResponseField>
+
+    <ResponseField name="customerId" type="uuid">
+      ID do cliente
+    </ResponseField>
+
     <ResponseField name="alias" type="string">
       Nome para o endereço
     </ResponseField>
@@ -75,6 +83,7 @@ authMethod: "bearer"
   "addresses": [
     {
       "id": "96c0e914-0094-4694-b735-a54633f8dfbc",
+      "customerId": "7b16fb4f-6c54-4f7c-a751-3027b451b4ed",
       "alias": "Casa",
       "zipcode": "87045-700",
       "street": "Praça Pioneiro Antônio Laurentino Tavares",
@@ -84,7 +93,6 @@ authMethod: "bearer"
       "neightborhood": "Jd. América",
       "number": "200",
       "complement": "Casa Azul",
-      "customerId": "7b16fb4f-6c54-4f7c-a751-3027b451b4ed",
       "createdAt": "2023-07-24T14:46:19.941Z",
       "updatedAt": null,
       "deletedAt": null
