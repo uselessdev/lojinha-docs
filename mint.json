@@ -18,6 +18,16 @@
       "to": "#9563FF"
     }
   },
+  "api": {
+    "auth": {
+      "method": "bearer"
+    },
+    "baseUrl": "https://lojinha.dev/api",
+    "playground": {
+      "mode": "simple"
+    }
+  },
+  "versions": ["v1"],
   "topbarLinks": [
     {
       "name": "Suporte",
@@ -62,6 +72,7 @@
     },
     {
       "group": "API",
+      "version": "v1",
       "pages": [
         "api-reference/authentication",
         {
