@@ -5,7 +5,7 @@ description: "Adiciona uma lista de produtos em um carrinho existente."
 ---
 
 <Warning>
-  Se o produto já existe no carrinho, é retornado um erro com status 422.
+  Se o produto já existe no carrinho, a quantidade dele no carrinho é incrementada.
 </Warning>
 
 ### URL
@@ -15,20 +15,12 @@ description: "Adiciona uma lista de produtos em um carrinho existente."
 </ParamField>
 
 ### Body
+<ParamField body="id" type="uuid" required>
+  ID do produto.
+</ParamField>
 
-<ParamField body="products" type="array">
-  slug da coleção, retorna a primeira coleção encontrada.
-
-  <Expandable name="products">
-    <ParamField body="id" type="uuid" required>
-      ID do produto.
-    </ParamField>
-
-    <ParamField body="quantity" type="number" required>
-      Quantidade do produto para adicionar no carrinho.
-    </ParamField>
-
-  </Expandable>
+<ParamField body="quantity" type="number" required>
+  Quantidade do produto para adicionar no carrinho.
 </ParamField>
 
 ### Resposta
